@@ -5,22 +5,23 @@ CWD=$(pwd)
 OPT="/opt"
 
 BASE_PKGS="gawk make git arduino-core curl"
-SITL_PKGS="g++ python-pip python-matplotlib python-serial python-wxgtk2.8 python-scipy python-opencv python-numpy python-pyparsing ccache"
+SITL_PKGS="g++ python-pip python-matplotlib python-serial python-scipy python-opencv python-numpy python-pyparsing ccache"
 PYTHON_PKGS="pymavlink MAVProxy droneapi"
 PX4_PKGS="python-serial python-argparse openocd flex bison libncurses5-dev \
           autoconf texinfo build-essential libftdi-dev libtool zlib1g-dev \
           zip genromfs"
-UBUNTU64_PKGS="libc6:i386 libgcc1:i386 gcc-4.6-base:i386 libstdc++5:i386 libstdc++6:i386"
+UBUNTU64_PKGS="libc6:i386 libgcc1:i386 libstdc++5:i386 libstdc++6:i386"
 ASSUME_YES=false
 
 # GNU Tools for ARM Embedded Processors
 # (see https://launchpad.net/gcc-arm-embedded/)
-ARM_ROOT="gcc-arm-none-eabi-4_7-2014q2"
-ARM_TARBALL="$ARM_ROOT-20140408-linux.tar.bz2"
-ARM_TARBALL_URL="http://firmware.diydrones.com/Tools/PX4-tools/$ARM_TARBALL"
+AVR_URL = "http://ww1.microchip.com/downloads/archive/avr8-gnu-toolchain-3.4.3.1072-linux.any.x86_64.tar.gz"
+ARM_ROOT="gcc-arm-none-eabi-6-2017-q2"
+ARM_TARBALL="$ARM_ROOT-update-linux.tar.bz2"
+ARM_TARBALL_URL="https://firmware.ardupilot.org/Tools/PX4-tools/$ARM_TARBALL"
 
 # Ardupilot Tools
-ARDUPILOT_TOOLS="ardupilot/Tools/autotest"
+ARDUPILOT_TOOLS="ArduPlane/Tools/autotest"
 
 function maybe_prompt_user() {
     if $ASSUME_YES; then
@@ -58,7 +59,8 @@ sudo usermod -a -G dialout $USER
 $APT_GET remove modemmanager
 $APT_GET update
 $APT_GET install $BASE_PKGS $SITL_PKGS $PX4_PKGS $UBUNTU64_PKGS
-sudo pip -q install $PYTHON_PKGS
+sudo python -m pip -q install future
+sudo python -m pip -q install $PYTHON_PKGS
 
 
 if [ ! -d PX4Firmware ]; then
