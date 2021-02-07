@@ -15,6 +15,8 @@ endif
 ifeq ($(SYSTYPE),Linux)
   # expect that tools are on the path
   TOOLPATH :=  $(subst :, ,$(PATH))
+  AVRPATH  :=  /home/jcc/avr8-gnu-toolchain-linux_x86_64/bin
+  FIND_AVR     =  $(firstword $(wildcard $(addsuffix /$(1),$(AVRPATH))))
   FIND_TOOL    =  $(firstword $(wildcard $(addsuffix /$(1),$(TOOLPATH))))
 endif
 ifeq ($(findstring CYGWIN, $(SYSTYPE)),CYGWIN)
@@ -35,13 +37,13 @@ NATIVE_LD      :=  g++
 NATIVE_GDB     :=  gdb
 NATIVE_OBJCOPY :=  objcopy
 
-AVR_CXX     :=  $(call FIND_TOOL,avr-g++)
-AVR_CC      :=  $(call FIND_TOOL,avr-gcc)
-AVR_AS      :=  $(call FIND_TOOL,avr-gcc)
-AVR_AR      :=  $(call FIND_TOOL,avr-ar)
-AVR_LD      :=  $(call FIND_TOOL,avr-gcc)
-AVR_GDB     :=  $(call FIND_TOOL,avr-gdb)
-AVR_OBJCOPY :=  $(call FIND_TOOL,avr-objcopy)
+AVR_CXX     :=  $(call FIND_AVR,avr-g++)
+AVR_CC      :=  $(call FIND_AVR,avr-gcc)
+AVR_AS      :=  $(call FIND_AVR,avr-gcc)
+AVR_AR      :=  $(call FIND_AVR,avr-ar)
+AVR_LD      :=  $(call FIND_AVR,avr-gcc)
+AVR_GDB     :=  $(call FIND_AVR,avr-gdb)
+AVR_OBJCOPY :=  $(call FIND_AVR,avr-objcopy)
 
 AVRDUDE      :=  $(call FIND_TOOL,avrdude)
 AVARICE      :=  $(call FIND_TOOL,avarice)
