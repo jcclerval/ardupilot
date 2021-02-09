@@ -103,7 +103,8 @@ BUILDROOT		:=	$(SKETCHBOOK)/Build.$(SKETCH)
 endif
 
 ifeq ($(BUILDROOT),)
-BUILDROOT		:=	$(abspath $(TMPDIR)/$(SKETCH).build)
+BUILDROOT       :=      $(SKETCHBOOK)/Build
+# BUILDROOT		:=	$(abspath $(TMPDIR)/$(SKETCH).build)
 endif
 
 ifneq ($(findstring CYGWIN, $(SYSTYPE)),)
