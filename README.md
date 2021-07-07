@@ -16,6 +16,14 @@
 
 >>Community Site: [http://diydrones.com](http://diydrones.com)
 
+### Ajouts JC ###
+
+Requirements :
+* Lancer install-prereqs-ubuntu.sh
+* Installer Arduino sur le système (`sudo apt-get install arduino -y`)
+* Installer toolchain AVR (https://www.microchip.com/en-us/development-tools-tools-and-software/avr-and-sam-downloads-archive) > AVR and ARM Toolchains
+	* AVR 8-bit v3.4.3 (http://ww1.microchip.com/downloads/archive/avr8-gnu-toolchain-3.4.3.1072-linux.any.x86_64.tar.gz)
+
 ### Developer Information ###
 >>Github repository: [https://github.com/diydrones/ardupilot](https://github.com/diydrones/ardupilot)
 

@@ -16,12 +16,3 @@ clean: plane copter rover antennatracker
 
 plane:
 	make -C ArduPlane $(TARGET)
-
-copter:
-	make -C ArduCopter $(TARGET)
-
-rover:
-	make -C APMrover2 $(TARGET)
-
-antennatracker:
-	make -C AntennaTracker $(TARGET)
